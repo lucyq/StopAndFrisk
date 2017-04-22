@@ -22,20 +22,20 @@ api = tweepy.API(auth)
 
 # Import our CSV - using sample CSV for now
 df = pd.read_csv("data.csv")
+
+# set some values
 date_column = df['date']
-date_column = pd.to_datetime(df.date)
+# date_column = pd.to_datetime(df.date)
 city_column = df['city']
 
 j = 0 # index for forloop
 
-# sort DF by date
-# df.sort('date')
-
 # convert date object into datetime object at midnight
+# we need this for the sleep function at the start of the nested for loop
 # for date in date_column:
 #     datetime.combine(date, datetime.min.time())
 
-# convert cities to lower case, and then to CamelCase
+# convert cities to lower case
 for cities in str(city_column):
     cities = cities.lower()
 
@@ -44,6 +44,7 @@ for cities in str(city_column):
 # after a year, we'll stop after 365 days
 for date in date_column:
     for i in xrange(0,365):
+        # THIS SLEEP SHIT DOESN'T WORK YET, SEE: https://stackoverflow.com/questions/2031111/in-python-how-can-i-put-a-thread-to-sleep-until-a-specific-time
         # sleep until midnight
         # t = datetime.datetime.today()
         # future = datetime.datetime(date)
@@ -61,11 +62,14 @@ for date in date_column:
         action = df.get_value(j, 'action')
         suspicion = df.get_value(j, 'suspicion')
 
+        # Fix the date format and remove the time
+        incident_date = datetime.strptime(str(date), '%Y-%m-%d').strftime('%m/%d/%y')
+
         # Prepare tweet
-        tweet = "Today: " + str(date) + ", Police " + str(action) + " a " + str(int(age)) + "-year-old " + str(race) + " " + str(sex) + " in " + str(city).title() + ". Citing: " + suspicion
+        tweet = "Today: " + str(incident_date) + ", Police " + str(action) + " a " + str(int(age)) + "-year-old " + str(race) + " " + str(sex) + " in " + str(city).title() + ". Citing: " + suspicion
         print(tweet)
         api.update_status(tweet)
-        print("sleeping for 15 minutes to test if this thing works...")
-        time.sleep(900)
+        print("sleeping for 5 minutes to test if this thing works...")
+        time.sleep(300)
 
         j += 1
