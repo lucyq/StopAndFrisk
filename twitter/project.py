@@ -24,14 +24,7 @@ api = tweepy.API(auth)
 df = pd.read_csv("data.csv")
 date_column = df['date']
 date_column = pd.to_datetime(df.date)
-
-# store the value headers
-sex_column = df['sex']
-race_column = df['race']
-age_column = df['age']
 city_column = df['city']
-susp_column = df['suspicion']
-action_column = df['action']
 
 j = 0 # index for forloop
 
@@ -39,8 +32,12 @@ j = 0 # index for forloop
 # df.sort('date')
 
 # convert date object into datetime object at midnight
-for date in date_column:
-    datetime.combine(date, datetime.min.time())
+# for date in date_column:
+#     datetime.combine(date, datetime.min.time())
+
+# convert cities to lower case, and then to CamelCase
+for cities in str(city_column):
+    cities = cities.lower()
 
 # Time management
 # If for some reason this script is still running
@@ -57,15 +54,18 @@ for date in date_column:
         # wake up and do midnight stuff
 
         # lets get all of our values here
-        sex = df.get_value(j, sex_column)
-        race = df.get_value(j, race_column)
-        age = df.get_value(j, age_column)
-        city = df.get_value(j, city_column)
-        action = df.get_value(j, action_column)
-        suspicion = df.get_value(j, susp_column)
+        sex = df.get_value(j, 'sex')
+        race = df.get_value(j, 'race')
+        age = df.get_value(j, 'age')
+        city = df.get_value(j, 'city')
+        action = df.get_value(j, 'action')
+        suspicion = df.get_value(j, 'suspicion')
 
         # Prepare tweet
-        tweet = "Today: " + date + ", Police " + action + " a " + age + "-year-old " + race + " " + sex + " in " + city + ". Citing: " + suspicion
+        tweet = "Today: " + str(date) + ", Police " + str(action) + " a " + str(int(age)) + "-year-old " + str(race) + " " + str(sex) + " in " + str(city).title() + ". Citing: " + suspicion
         print(tweet)
-        api.update_status(line)
-        sleep(900)
+        api.update_status(tweet)
+        print("sleeping for 15 minutes to test if this thing works...")
+        time.sleep(900)
+
+        j += 1
