@@ -27,6 +27,7 @@ df = pd.read_csv("data.csv")
 date_column = df['date']
 # date_column = pd.to_datetime(df.date)
 city_column = df['city']
+action_column = df['action']
 
 j = 0 # index for forloop
 
@@ -38,6 +39,10 @@ j = 0 # index for forloop
 # convert cities to lower case
 for cities in str(city_column):
     cities = cities.lower()
+
+# convert actions to lower case
+for actions in str(action_column):
+    actions = actions.lower()
 
 # Time management
 # If for some reason this script is still running
@@ -63,10 +68,10 @@ for date in date_column:
         suspicion = df.get_value(j, 'suspicion')
 
         # Fix the date format and remove the time
-        incident_date = datetime.strptime(str(date), '%Y-%m-%d').strftime('%m/%d/%y')
+        # incident_date = datetime.strptime(str(date), '%Y-%m-%d').strftime('%m/%d/%y')
 
         # Prepare tweet
-        tweet = "Today: " + str(incident_date) + ", Police " + str(action) + " a " + str(int(age)) + "-year-old " + str(race) + " " + str(sex) + " in " + str(city).title() + ". Citing: " + suspicion
+        tweet = "Today: " + str(date) + ", Police " + str(action) + " a " + str(int(age)) + "-year-old " + str(race) + " " + str(sex) + " in " + str(city).title() + ". Citing: " + suspicion
         print(tweet)
         api.update_status(tweet)
         print("sleeping for 5 minutes to test if this thing works...")

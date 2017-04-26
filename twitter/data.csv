@@ -1,12 +1,9 @@
 date,sex,race,age,hair,complexion,origin,clothing,city,suspicion,action
-2017-04-22,male,Black,23,,,,,ROXBURY,Reasonable Suspicion,Stopped
-2017-04-22,male,Unknown,24,,,,,DORCHESTER,Probable Cause,Stopped
-2017-04-22,female,Black,24,,,,,BOSTON,Reasonable Suspicion,Stopped
-2017-04-22,male,Black,23,,,,,BOSTON,Intel,Encountered
-2017-04-22,male,Black,32,,,,,JAMAICA PLAIN,Encounter,Encountered
-2017-04-22,male,Black,23,,,,,BOSTON,Probable Cause,Observed
-2017-04-23,male,Black,18,,,,,BOSTON,Reasonable Suspicion,Observed
-2017-04-24,male,Hispanic,29,,,,,BOSTON,Probable Cause,Stopped
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
+4/22/15,male,Black,23,,,,,ROXBURY,Reasonable Suspicion,Stopped
+4/22/15,male,Hispanic,24,,,,,DORCHESTER,Probable Cause,Stopped
+4/22/15,female,Black,24,,,,,BOSTON,Reasonable Suspicion,Stopped
+4/22/15,male,Black,23,,,,,BOSTON,Intel,Encountered
+4/22/15,male,Black,32,,,,,JAMAICA PLAIN,Encounter,Encountered
+4/22/15,male,Black,23,,,,,BOSTON,Probable Cause,Observed
+4/23/15,male,Black,18,,,,,BOSTON,Reasonable Suspicion,Observed
+4/24/15,male,Hispanic,29,,,,,BOSTON,Probable Cause,Stopped
